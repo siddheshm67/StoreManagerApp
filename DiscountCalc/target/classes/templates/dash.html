@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section>
+<div class="container mt-5">
+	<div class="card">
+  <div class="card-header">
+    Store Sales Dashboard
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Manager UserID : <span th:text="${userid}"></span></h5>
+    <p class="card-text">WELCOME BACK MR. <span th:text="${name}"></span></p>
+    
+    
+    <div class="container">
+    	
+    	<table class="table table-striped">
+  <tbody>
+    <tr>
+      <th scope="row">Toatal Sales Value </th>
+      <td><span th:text="${totalSalesAmt}"></span></td>
+    </tr>
+    <tr>
+      <th scope="row">Total Discount Given</th>
+      <td><span th:text="${sumOfDiscount}"></span></td>
+    </tr>
+    <tr>
+      <th scope="row">Total final Amount</th>
+      <td><span th:text="${sumOfFinalamt}"></span></td>
+    </tr>
+   
+  </tbody>
+</table>
+
+<div class="card"> 
+
+	<h5 class="text-center">Bills</h5>
+	
+  <ul>
+  	<li th:each="n:${list}">
+  		<span th:text="${n}"></span>
+  	</li>
+  </ul>
+  
+</div>
+    </div>
+    <div class="container text-center mt-3">
+	    <a href="home" class="btn btn-primary">BACK</a>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+
+</body>
+</html>

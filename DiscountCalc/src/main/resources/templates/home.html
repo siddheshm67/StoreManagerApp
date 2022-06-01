@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container mt-5">
+			<div class="card">
+				<div class="card-header">Store Manager</div>
+				<div class="card-body">
+
+					<form action="calculate" method="post">
+						
+						<div class="form-group form-control-lg mt-3 ">
+							<label class="sr-only" for="inlineFormInputGroupUsername">Customer Name</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">A</div>
+								</div>
+								<input type="text" required="required" class="form-control"
+									name="CustName" 
+									placeholder="Name">
+							</div>
+						</div>
+						
+
+						<div class="form-group form-control-lg mt-3">
+							<label for="exampleFormControlSelect1">Select Customer</label> <select
+								class="form-control" id="exampleFormControlSelect1" name="type">
+								<option>Regular</option>
+								<option>Premium</option>
+
+							</select>
+						</div>
+
+						<div class="form-group form-control-lg mt-3 ">
+							<label class="sr-only" for="inlineFormInputGroupUsername">Bill
+								Amount</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">$</div>
+								</div>
+								<input type="number" required="required" class="form-control"
+									name="amount" id="inlineFormInputGroupUsername"
+									placeholder="Amount">
+							</div>
+						</div>
+
+						<div th:if="${message=='true'}">
+							<div class="container text-center mt-3">
+								<div class="">
+									<div class="card">
+										<div class="card-body">
+
+											<table class="table table-sm">
+
+												<tbody>
+													<tr>
+
+													</tr>
+													<tr>
+														<th scope="row">Regular price</th>
+														<td><span th:text="${mrp}"></span>$</td>
+													</tr>
+													<tr>
+														<th scope="row">Discount</th>
+														<td><span th:text="${dicount_percentage}"></span>%</td>
+													</tr>
+
+													<tr>
+														<th scope="row">Total Saving</th>
+														<td><span th:text="${dicount_rs}"></span>$</td>
+													</tr>
+
+
+													<tr>
+														<th scope="col">Final Price</th>
+														<th scope="col"><span th:text="${finalamt}"></span>$</th>
+													</tr>
+												<thead class="thead-light"></table>
+      </div>
+    </div>
+  </div>
+											
+</div>
+						</div>
+	
+		<div class="container text-center">
+			<button type="submit" class="btn btn-primary mt-3">Submit</button>
+			<a href="home" class="btn btn-primary mt-3">reset</a>
+			<a href="dash" class="btn btn-primary mt-3">Manager Dashboard</a>
+		</div>
+		
+	\
+		
+		
+		</form>
+		</div>
+		</div>
+		</div>
+
+
+	</section>
+
+
+</body>
+</html>
