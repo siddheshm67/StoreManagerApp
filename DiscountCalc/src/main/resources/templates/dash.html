@@ -36,15 +36,36 @@
   </tbody>
 </table>
 
-<div class="card"> 
+<div class="card mt-4"> 
 
-	<h5 class="text-center">Bills</h5>
+	<h5 class="text-center mt-2">Customers Information</h5>
 	
-  <ul>
-  	<li th:each="n:${list}">
-  		<span th:text="${n}"></span>
-  	</li>
-  </ul>
+	<div class="container mt-2 text-center">
+  	
+  		<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Bill amount($)</th>
+      <th scope="col">Discount(%)</th>
+      <th scope="col">Final bill($)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="n:${list}">
+      <th scope="row"><span th:text="${n.id}"></span></th>
+      <td><span th:text="${n.CustName}"></span></td>
+      <td><span th:text="${n.type}"></span></td>
+      <td><span th:text="${n.amount}"></span></td>
+      <td><span th:text="${n.discount}"></span></td>
+      <td><span th:text="${n.finalPrice}"></span></td>
+    </tr>
+  </tbody>
+</table>
+	</div>
+
   
 </div>
     </div>

@@ -12,8 +12,8 @@
 				<div class="card-header">New Manager Sign up Here</div>
 				<div class="card-body">
 				
-				<div th:if="${session.message}" th:classappend="alert-success" class="alert" role="alert">
-							<p class="text-center" th:text="${session.message}"></p>
+				<div th:if="${session.message=='alert'}" th:classappend="alert-success" class="alert" role="alert">
+							<p class="text-center" >Susscessfully Register</p>
 							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
 						</div>
 				
@@ -55,7 +55,7 @@
 						</div>
 						<div class="container mt-3 text-center">
 						<button type="submit" class="btn btn-primary ">Register</button>
-						<a href="login" class="btn btn-primary ">Login</a>
+						<a href="manager/home" class="btn btn-primary ">Login</a>
 						</div>
 					</form>
 				</div>

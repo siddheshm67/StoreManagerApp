@@ -1,4 +1,4 @@
-package com.DiscountCalc.securityOne;
+ package com.DiscountCalc.securityOne;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,7 +48,8 @@ public class ConfigClass extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeHttpRequests()
-		.antMatchers("/manager/**").hasRole("USER")
+		.antMatchers("/Admin/**").hasRole("ADMIN")
+		.antMatchers("/manager/**").hasAnyRole("USER","ADMIN")
 		.antMatchers("/**").permitAll().and()
 		.formLogin().and().csrf().disable();
 	}

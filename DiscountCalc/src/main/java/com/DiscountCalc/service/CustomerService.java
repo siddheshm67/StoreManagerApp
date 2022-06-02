@@ -29,24 +29,31 @@ public class CustomerService {
 		return list;
 	}
 	
-	public int sumOfamt() {
-		int sumofAmount = customerRepo.sumofAmount();
+	public int sumOfamt(int id) {
+		int sumofAmount = customerRepo.sumofAmount(id);
 		
 		return sumofAmount;
 	}
 	
-	public int sumOfFinalamt() {
+	public int sumOfFinalamt(int id) {
 		
-		int sumofFinalAmt = customerRepo.sumofFinalAmt();
+		int sumofFinalAmt = customerRepo.sumofFinalAmt(id);
 		
 		return sumofFinalAmt;
 	}
 	
-	public int sumOfDiscount() {
+	public int sumOfDiscount(int id) {
 		
-		int sumofDicount = customerRepo.sumofDicount();
+		int sumofDicount = customerRepo.sumofDicount(id);
 		
 		return sumofDicount;
+	}
+	
+	public List<Customer> findByManagerId(int id){
+		
+		List<Customer> list = customerRepo.FindByManagerId(id);
+		
+		return list;
 	}
 	
 	

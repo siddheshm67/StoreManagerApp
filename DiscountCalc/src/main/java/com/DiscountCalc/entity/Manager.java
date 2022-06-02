@@ -1,11 +1,19 @@
 package com.DiscountCalc.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.ValueGenerationType;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -23,7 +31,23 @@ public class Manager {
 	private String mobilenoString;
 	private String passString;
 	private String role;
+	private int totalSales;
 	
+	@OneToMany(cascade = CascadeType.ALL ,fetch = FetchType.EAGER,mappedBy = "manager",orphanRemoval = true)
+	private List<Customer> customers = new ArrayList<>();
+	
+	public int getTotalSales() {
+		return totalSales;
+	}
+	public void setTotalSales(int totalSales) {
+		this.totalSales = totalSales;
+	}
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
+	}
 	public String getRole() {
 		return role;
 	}

@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Customer {
@@ -18,6 +20,15 @@ public class Customer {
 	private int saving;
 	private int finalPrice;
 	
+	@ManyToOne
+	private Manager manager;
+	
+	public Manager getManager() {
+		return manager;
+	}
+	public void setManager(Manager manager) {
+		this.manager = manager;
+	}
 	public int getDiscount() {
 		return discount;
 	}
@@ -83,8 +94,6 @@ public class Customer {
 		return "Customer [id=" + id + ", CustName=" + CustName + ", type=" + type + ", amount=" + amount + ", discount="
 				+ discount + ", saving=" + saving + ", finalPrice=" + finalPrice + "]";
 	}
-	
-	
 	
 	
 }

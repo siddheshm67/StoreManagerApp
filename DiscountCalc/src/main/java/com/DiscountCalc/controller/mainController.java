@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,17 +33,18 @@ public class mainController {
 	private ManagerService managerService;
 		
 	@RequestMapping("/home")
-	public String home() {
-		
+	public String home(HttpSession session) {
+		session.setAttribute("message", "show");
 		return"home";
 	}
 	
 	@RequestMapping(value = "/calculate",method = RequestMethod.POST)
-	public String calc( @ModelAttribute Customer customer,Model model,HttpSession session) {
+	public String calc( @ModelAttribute Customer customer,Model model,HttpSession session,Principal principal) {
 		System.out.println("customer***"+customer);
 		int amt = customer.getAmount();
 	
 		String type = customer.getType();
+		Manager manager = managerService.getbyID(principal.getName());
 		
 		if (type.equals("Premium")) {
 			int[] arr = checkPremium(amt);
@@ -60,8 +62,11 @@ public class mainController {
 			customer2.setFinalPrice(arr[1]);
 			customer2.setSaving(arr[0]);
 			customer2.setType(type);
+			customer2.setManager(manager);
 			
 			customerService.saveCustomer(customer2);
+			session.setAttribute("message", "show");
+			
 			
 			return"home";
 	
@@ -85,8 +90,10 @@ public class mainController {
 			customer2.setFinalPrice(arr[1]);
 			customer2.setSaving(arr[0]);
 			customer2.setType(type);
+			customer2.setManager(manager);
 			
 			customerService.saveCustomer(customer2);
+			session.setAttribute("message", "show");
 			
 			return"home";
 		}
@@ -150,13 +157,13 @@ public class mainController {
 	}
 	
 	@RequestMapping("/dash")
-	public String dash(Model model,Principal principal) {
+	public String dash(Model model,Principal principal,HttpSession session) {
 		
 		Manager manager = managerService.getbyID(principal.getName());
 		
-		int sumofAmount = customerService.sumOfamt();
-		int sumOfDiscount = customerService.sumOfDiscount();
-		int sumOfFinalamt = customerService.sumOfFinalamt();
+		int sumofAmount = customerService.sumOfamt(manager.getId());
+		int sumOfDiscount = customerService.sumOfDiscount(manager.getId());
+		int sumOfFinalamt = customerService.sumOfFinalamt(manager.getId());
 		
 		model.addAttribute("totalSalesAmt", sumofAmount);
 		
@@ -164,10 +171,16 @@ public class mainController {
 		model.addAttribute("userid", manager.getUseridString());
 		model.addAttribute("sumOfDiscount", sumOfDiscount);
 		model.addAttribute("sumOfFinalamt", sumOfFinalamt);
+		System.out.println(manager.getId());
 		
+		int sale = managerService.setTotalSale(manager.getId(), sumOfFinalamt);
+		
+		System.out.println(sale);
 		
 		List<Customer> list = customerService.getAll();
-		model.addAttribute("list", list);
+		List<Customer> list2 = customerService.findByManagerId(manager.getId());
+		model.addAttribute("list", list2);
+		session.setAttribute("message", "show");
 		
 		return"dash";
 	}

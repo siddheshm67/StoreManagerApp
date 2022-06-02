@@ -1,5 +1,7 @@
 package com.DiscountCalc.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,24 @@ public class ManagerService{
 		Manager manager = managerRepo.findByUseridString(userid);
 		
 		return manager;
+	}
+	
+	public int setTotalSale(int a,int b) {
+		int sales = managerRepo.setTotalSales(a, b);
+		
+		return sales;
+	}
+	
+	public List<Manager> getAllManagers(){
+		List<Manager> list = managerRepo.findAll();
+		return list;
+	}
+	
+	public int totalSum() {
+		
+		int sUm = managerRepo.TotalSUm();
+		
+		return sUm;
 	}
 	
 }

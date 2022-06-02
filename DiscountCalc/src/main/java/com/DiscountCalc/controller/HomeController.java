@@ -3,6 +3,7 @@ package com.DiscountCalc.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +18,9 @@ public class HomeController {
 	
 	@Autowired
 	private ManagerService managerService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bEncoder;
 	
 	@RequestMapping("/front")
 	public String Front() {
@@ -44,10 +48,10 @@ public class HomeController {
 		m1.setUseridString(manager.getUseridString());
 		m1.setGenderString(manager.getGenderString());
 		m1.setMobilenoString(manager.getMobilenoString());
-		m1.setPassString(manager.getPassString());
-		m1.setRole("USER");
+		m1.setPassString(bEncoder.encode(manager.getPassString()));
+		m1.setRole("ROLE_USER");
 		Manager newManager = managerService.CreateNewManager(m1);
-		session.setAttribute("message", "mr. "+newManager.getNameString()+" you are Successfully registred");
+		session.setAttribute("message", "alert");
 		return"register";
 	}
 }
