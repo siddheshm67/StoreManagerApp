@@ -22,4 +22,9 @@ public interface ManagerRepo extends JpaRepository<Manager, Integer>{
 	@Query(value = "select sum(total_sales) from manager",nativeQuery = true)
 	int TotalSUm();
 	
+	@Query(value = "select * from manager where role = 'ROLE_USER'",nativeQuery = true)
+	List<Manager> getAllManagers();
+	
+	
+	
 }

@@ -35,7 +35,7 @@ public class ManagerService{
 	}
 	
 	public List<Manager> getAllManagers(){
-		List<Manager> list = managerRepo.findAll();
+		List<Manager> list = managerRepo.getAllManagers();
 		return list;
 	}
 	
@@ -46,4 +46,11 @@ public class ManagerService{
 		return sUm;
 	}
 	
+	public void delteManager( int id) {
+		
+		managerRepo.deleteById(id);
+		
+	}
+	
+
 }

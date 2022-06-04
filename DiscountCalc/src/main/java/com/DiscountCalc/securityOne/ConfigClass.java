@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -52,7 +53,18 @@ public class ConfigClass extends WebSecurityConfigurerAdapter {
 		.antMatchers("/manager/**").hasAnyRole("USER","ADMIN")
 		.antMatchers("/**").permitAll().and()
 		.formLogin().and().csrf().disable();
+		
+		 http
+         .logout(logout -> logout
+           .logoutUrl("/logout")
+           .logoutSuccessUrl("/front")
+           .addLogoutHandler(new SecurityContextLogoutHandler())
+         );
+		
+		
 	}
+	
+	
 	
 	
 	

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.event.PublicInvocationEvent;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.DiscountCalc.entity.Manager;
@@ -30,11 +31,12 @@ public class AdminController {
 		return"admin";
 	}
 	
-	@RequestMapping("/deleteManager")
-	public String DeleteManager() {
+	@RequestMapping("/deleteManager/{id}")
+	public String DeleteManager(@PathVariable("id") int id) {
 		
+		managerService.delteManager(id);
 		
-		return"/";
+		return"redirect:/Admin/";
 	}
 	
 }
