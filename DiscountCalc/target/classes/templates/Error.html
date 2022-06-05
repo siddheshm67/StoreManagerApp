@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section>
+<div class="container text-center mt-5 p-2">
+		<div class="d-flex justify-content-center p-2">
+			<div class="card p-5" style="width: 30rem;">
+				<img class="card-img-top" th:src="@{/imgs/error2.jpg}" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Something Went Wrong !!!..</h5>
+					<div class="container mt-3">
+					<a href="/logout" class="btn btn-primary">Back</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+</section>
+
+
+</body>
+</html>

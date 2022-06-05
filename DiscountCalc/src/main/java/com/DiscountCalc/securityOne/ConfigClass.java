@@ -57,7 +57,7 @@ public class ConfigClass extends WebSecurityConfigurerAdapter {
 		 http
          .logout(logout -> logout
            .logoutUrl("/logout")
-           .logoutSuccessUrl("/front")
+           .logoutSuccessUrl("/")
            .addLogoutHandler(new SecurityContextLogoutHandler())
          );
 		

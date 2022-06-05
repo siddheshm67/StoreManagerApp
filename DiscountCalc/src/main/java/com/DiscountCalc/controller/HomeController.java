@@ -22,7 +22,7 @@ public class HomeController {
 	@Autowired
 	private BCryptPasswordEncoder bEncoder;
 	
-	@RequestMapping("/front")
+	@RequestMapping("/")
 	public String Front() {
 		
 		return"front";
