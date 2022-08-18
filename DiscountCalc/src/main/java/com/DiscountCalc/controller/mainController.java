@@ -63,7 +63,7 @@ public class mainController {
 			customer2.setSaving(arr[0]);
 			customer2.setType(type);
 			customer2.setManager(manager);
-			
+			int b = 20;
 			customerService.saveCustomer(customer2);
 			session.setAttribute("message", "show");
 			
