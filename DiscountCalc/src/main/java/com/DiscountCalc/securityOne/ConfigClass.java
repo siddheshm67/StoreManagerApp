@@ -18,7 +18,9 @@ public class ConfigClass extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public UserDetailsService getUserDetailsService() {
-		
+		int s = 22;
+		int c = 22;
+		int k = 29;
 		return new UserDetailServiceImpl();
 	}
 	
