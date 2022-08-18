@@ -24,7 +24,7 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String Front() {
-		
+		int a = 10;
 		return"front";
 	}
 	
