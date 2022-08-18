@@ -33,7 +33,7 @@ public class AdminController {
 	
 	@RequestMapping("/deleteManager/{id}")
 	public String DeleteManager(@PathVariable("id") int id) {
-		
+		system.out.println("new change");
 		managerService.delteManager(id);
 		
 		return"redirect:/Admin/";
